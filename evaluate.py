@@ -7,6 +7,6 @@ tokenizer = AutoTokenizer.from_pretrained("nielsr/coref-bert-base")
 model = AutoModel.from_pretrained("nielsr/coref-bert-base")
 
 # Load FEVER dataset
-fever_dataset = load_dataset("fever")
+fever_dataset = load_dataset("fever", "wiki_pages")
 
-print(fever_dataset)
+print(fever_dataset['wikipedia_pages'][1])
