@@ -29,7 +29,7 @@ def fever_jsonl2io(line):
 def process_jsonl2io_parallel(lines):
     dataset = []
     with ThreadPoolExecutor() as executor:
-        for input_sentence, label in executor.map(fever_jsonl2io, lines):
+        for (input_sentence, label) in executor.map(fever_jsonl2io, lines):
             if label is not SPECIAL_NUMS["NEG_ONE"]:
                 dataset.append((input_sentence, label))
     return dataset
