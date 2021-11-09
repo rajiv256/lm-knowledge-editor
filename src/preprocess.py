@@ -24,11 +24,11 @@ class FeverDataset(Dataset):
         input_sentence = self.dataset[index][0]
         class_label = self.dataset[index][1]
         encoded_input = self.tokenizer(text=input_sentence,
-            max_length=self.max_length,
-            padding=self.padding,
-            truncation=self.truncation,
-            return_tensors="pt"
-        )
+                                       max_length=self.max_length,
+                                       padding=self.padding,
+                                       truncation=self.truncation,
+                                       return_tensors="pt"
+                                       )
         return encoded_input, class_label
 
 
