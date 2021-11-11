@@ -19,7 +19,30 @@ class BertFC(nn.Module):
         output = self.classifier(pooled_output)
         return output.squeeze(0)
 
+def modify_authors_state_dict(state_dict):
+    """The state dicts prefixes don't match (ours is bert.xyz,
+    their's is model.model.xyz. This function alters the
+    naming in their state_dict to match"""
+    from collections import OrderedDict
+    new_state_dict = OrderedDict()
+    for x in state_dict.items():
+        # print(x)
+        name = x[0]
+        vals = x[1]
+        if name[:11] == "model.model":
+            new_name = "bert" + name[11:]
+        else:
+            new_name = name[6:]
+        new_state_dict[new_name] = vals
+    return new_state_dict
+
+
 # Build the model
 if __name__ == '__main__':
     bert_fc_model = BertFC()
+    modified_state_dict = modify_authors_state_dict(authors_model['state_dict'])
+    bert_fc_model.load_state_dict(authors_model['state_dict'])
+    bert_fc_model.load_state_dict(modified_state_dict)
+    authors_model['state_dict']
+    authors_model = torch.load('data/FC_model.ckpt')
 
