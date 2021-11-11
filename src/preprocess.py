@@ -18,7 +18,7 @@ class FeverDatasetFinetune(Dataset):
 
         # Tuple of input, class label
         self.dataset = process_jsonl2io_parallel(lines)
-        self.tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
+        self.tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
         self.padding = padding
         self.truncation = truncation
         self.max_length = max_length
