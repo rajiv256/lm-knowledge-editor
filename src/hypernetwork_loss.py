@@ -29,6 +29,14 @@ def kl_loss(O_x, bert, bert_edited):
     return loss
 
 
+def lp_loss(bert_params, new_bert_params, p=2):
+    old_params = bert_params.flatten()
+    new_params = new_bert_params.flatten()
+    loss = torch.norm(torch.abs(bert_params.flatten() - new_params.flatten()),
+        p=p, dim=0)
+    return loss
+
+
 if __name__=="__main__":
     output = torch.tensor([0.99, 0.01])
     target = torch.tensor([0.5, 0.5])

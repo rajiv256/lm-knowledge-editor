@@ -1,0 +1,10 @@
+bitarray
+fastBPE
+hydra-core
+omegaconf
+regex
+requests
+sacremoses
+subword_nmt
+torch
+tensorboardX
