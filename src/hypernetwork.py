@@ -58,7 +58,7 @@ class HyperNetwork(nn.Module):
         # TODO: With L of 512, is the BiLSTM model going to forget parameters 
         # through time? Can we mask the bilstm input?
         _, (hidden, _) = self.bilstm(X, (
-            hidden, cell))  # hidden dim [2 x 1 x 128]
+        hidden, cell))  # hidden dim [2 x 1 x 128]
         output = torch.tanh(self.linear(hidden.flatten()))  # [1024]
 
         alpha = self.alpha_linear(output)  # [m]
